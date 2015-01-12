@@ -1,16 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Prim_MainFrame.java
+ * Louis Ritchie        louiscritchie@gmail.com         January 11th, 2015
+ * 
+ * This is the JFrame class for the Prims_Algorithm application. A tabbed pane
+ * sets up the two content panels, found in the Prim_IntroPanel.java and
+ * Prim_GraphPanel.java classes.
  */
 package graphtheorydriver;
 
 import javax.swing.*;
-/**
- *
- * @author louis_c_ritchie
- */
-public class GraphTheoryDriver {
+
+public class Prim_MainFrame {
 
     /**
      * @param args the command line arguments
@@ -20,8 +20,8 @@ public class GraphTheoryDriver {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JTabbedPane tp = new JTabbedPane();
-        tp.addTab("Intro", new IntroPanel());
-        tp.addTab("Graph", new graphTheoryPanel());
+        tp.addTab("Intro", new Prim_IntroPanel());
+        tp.addTab("Graph", new Prim_GraphPanel());
         
         frame.getContentPane().add(tp);
         

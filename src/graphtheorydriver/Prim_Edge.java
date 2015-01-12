@@ -1,5 +1,11 @@
 /*
-This class manages the user-created edges in the Graph Theory application.
+ * Prim_Edge.java
+ * Louis Ritchie        louiscritchie@gmail.com         January 11th, 2015
+ * 
+ * This class manages the edges created in the Prim_GraphPanel class. Various
+ * methods are used with vertex parameters to return the start and end vertices,
+ * weights, etc. A 4-point polygon is generated at instantiation and manages the
+ * selection area for the edge.
  */
 package graphtheorydriver;
 
@@ -7,9 +13,9 @@ import java.awt.*;
 import java.awt.Font;
 import java.awt.Polygon;
 
-public class graphTheoryEdge {
+public class Prim_Edge {
     
-    private graphTheoryVertex start, end;
+    private Prim_Vertex start, end;
     
     private double xMidpoint, yMidpoint, angle;
     
@@ -24,11 +30,11 @@ public class graphTheoryEdge {
     
     //--------------------------------------------------------------------------
     // Constructor: instantiates the edge using both a starting and ending 
-    // graphTheoryVertex object. Also creates diamond-shaped polygon along
+    // Prim_Vertex object. Also creates diamond-shaped polygon along
     // the edge that provides area for the user to select the edge and assign
     // a weight.
     //--------------------------------------------------------------------------
-    public graphTheoryEdge(graphTheoryVertex v, graphTheoryVertex w) {
+    public Prim_Edge(Prim_Vertex v, Prim_Vertex w) {
         if (!(v.equals(w))) {
             if (v.getX() < w.getX()) {// assigns leftmost vertex to start
                 start = v;
@@ -57,7 +63,7 @@ public class graphTheoryEdge {
         posUp = (Math.PI) / 3.0 + 0.3;
         
         if (((negLow < angle) && (negUp > angle)) || ((posLow < angle) && (posUp > angle)))
-            angle =+ 0.5;
+            angle =+ 0.8;
         
         int[] xpoints = new int[4];
         int[] ypoints = new int[4];
@@ -77,7 +83,7 @@ public class graphTheoryEdge {
     //--------------------------------------------------------------------------
     // Compares an input vertex to the start and end vertices of the edge.
     //--------------------------------------------------------------------------
-    public Boolean checkEndpoints(graphTheoryVertex v) {
+    public Boolean checkEndpoints(Prim_Vertex v) {
         if (v.equals(start) || v.equals(end))
             return true;
         return false;
@@ -86,7 +92,7 @@ public class graphTheoryEdge {
     //--------------------------------------------------------------------------
     // Compares two input vertices to the start and end vertices of the edge.
     //--------------------------------------------------------------------------
-    public Boolean checkEndpoints(graphTheoryVertex v, graphTheoryVertex w) {
+    public Boolean checkEndpoints(Prim_Vertex v, Prim_Vertex w) {
         if ((v.equals(start) && w.equals(end)) || ((v.equals(end) && w.equals(start))))
             return true;
         return false;
@@ -96,7 +102,7 @@ public class graphTheoryEdge {
     // Returns the other endpoint when one endpoint is input. The input MUST be
     // an endpoint of the edge for this method to function as intended.
     //--------------------------------------------------------------------------
-    public graphTheoryVertex getOtherEndpoint(graphTheoryVertex v) {
+    public Prim_Vertex getOtherEndpoint(Prim_Vertex v) {
         if (start.equals(v))
             return end;
         else
@@ -106,22 +112,29 @@ public class graphTheoryEdge {
     //--------------------------------------------------------------------------
     // Returns the starting (leftmost) vertex object of the edge.
     //--------------------------------------------------------------------------
-    public graphTheoryVertex getStart() {
+    public Prim_Vertex getStart() {
         return start;
     }
     
     //--------------------------------------------------------------------------
     // Returns the ending (rightmost) vertex object of the edge.
     //--------------------------------------------------------------------------
-    public graphTheoryVertex getEnd() {
+    public Prim_Vertex getEnd() {
         return end;
     }
     
     //--------------------------------------------------------------------------
-    // 
+    // Returns the weight of the edge.
     //--------------------------------------------------------------------------
     public int getWeight() {
         return weight;
+    }
+        
+    //--------------------------------------------------------------------------
+    // Sets the weight of the edge.
+    //--------------------------------------------------------------------------
+    public void setWeight(int a) {
+        weight = a;
     }
     
     //--------------------------------------------------------------------------
@@ -152,7 +165,7 @@ public class graphTheoryEdge {
     // Compares this edge to each element of input array and returns true if
     // this edge exists within that array.
     //--------------------------------------------------------------------------
-    public Boolean isWithin(graphTheoryEdge[] e) {
+    public Boolean isWithin(Prim_Edge[] e) {
         int index = e.length;
         for (int count=0; count < index; count++)
             if (this.equals(e[count]))
@@ -208,12 +221,6 @@ public class graphTheoryEdge {
         MSTcolour = b;
     }
     
-    //--------------------------------------------------------------------------
-    // Sets the weight of the edge.
-    //--------------------------------------------------------------------------
-    public void setWeight(int a) {
-        weight = a;
-    }
     //--------------------------------------------------------------------------
     // Manages the drawing of the edge on a panel.
     //--------------------------------------------------------------------------

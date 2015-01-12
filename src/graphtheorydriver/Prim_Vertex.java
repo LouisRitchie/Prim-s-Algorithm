@@ -1,11 +1,16 @@
 /*
-This class manages the user-created vertices in the Graph Theory application.
+ * Prim_Vertex.java
+ * Louis Ritchie        louiscritchie@gmail.com         January 11th, 2015
+ * 
+ * This class manages the vertices created in the Prim_GraphPanel class. The
+ * methods of this class are versatile, and can search Prim_Edge[] objects to
+ * find which edge connects two vertices. 
  */
 package graphtheorydriver;
 
 import java.awt.*;
 
-public class graphTheoryVertex {
+public class Prim_Vertex {
     
     private int xCoordinate, yCoordinate;
     
@@ -18,7 +23,7 @@ public class graphTheoryVertex {
     //--------------------------------------------------------------------------
     //  Constructor: uses x, y parameters to instantiate the vertex object
     //--------------------------------------------------------------------------
-    public graphTheoryVertex(int x, int y) {
+    public Prim_Vertex(int x, int y) {
         xCoordinate = x;
         yCoordinate = y;
     }
@@ -45,7 +50,7 @@ public class graphTheoryVertex {
     // for loop iterating through the adjacent vertices, it produces the weight
     // of connecting those two vertices, allowing us to select the best edge.
     //--------------------------------------------------------------------------
-    public int getWeight(graphTheoryEdge[] e, graphTheoryVertex v) {
+    public int getWeight(Prim_Edge[] e, Prim_Vertex v) {
         if (v != null) {
             boolean matchFound = false;
             int count = 0;
@@ -64,8 +69,8 @@ public class graphTheoryVertex {
     // Retuns the edge from the array that adjoins this vertex and the input
     // vertex. Such an edge must exist or method will create NullPointerExcep.
     //--------------------------------------------------------------------------
-    public graphTheoryEdge getEdge(graphTheoryEdge[] e, graphTheoryVertex v) {
-        graphTheoryEdge match = null;
+    public Prim_Edge getEdge(Prim_Edge[] e, Prim_Vertex v) {
+        Prim_Edge match = null;
         boolean matchFound = false;
         int count = 0;
         while ((!matchFound) && (count < e.length)) {

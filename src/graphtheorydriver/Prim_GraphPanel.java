@@ -1,7 +1,10 @@
 /*
-*   graphTheoryPanel.java
-*   Louis Ritchie               January 5th, 2015
-*   Represents the main panel of the GraphTheory program.
+ * Prim_GraphPanel.java
+ * Louis Ritchie        louiscritchie@gmail.com         January 11th, 2015
+ * 
+ * This class controls the main user interface of this application. Vertices,
+ * edges, and weights are managed by various listeners. This class also contains
+ * the code for Prim's algorithm.
  */
 package graphtheorydriver;
 
@@ -9,14 +12,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class graphTheoryPanel extends JPanel {
+public class Prim_GraphPanel extends JPanel {
 
-    // array of graphTheoryVertex objects
-    private final graphTheoryVertex[] vertices = new graphTheoryVertex[100];
+    // array of Prim_Vertex objects
+    private final Prim_Vertex[] vertices = new Prim_Vertex[100];
     
-    // array of graphTheoryEdge objects. Not final, as Prim's algorithm changes
+    // array of Prim_Edge objects. Not final, as Prim's algorithm changes
     // this.
-    private graphTheoryEdge[] edges = new graphTheoryEdge[100];
+    private Prim_Edge[] edges = new Prim_Edge[100];
     
     private int vCount = 0, eCount = 0; // counts number of vertices, edges
     
@@ -38,7 +41,7 @@ public class graphTheoryPanel extends JPanel {
     //--------------------------------------------------------------------------
     //  Constructor: sets up the panel.
     //--------------------------------------------------------------------------
-    public graphTheoryPanel() {
+    public Prim_GraphPanel() {
         
         setLayout(new FlowLayout(FlowLayout.LEFT));
         
@@ -80,15 +83,15 @@ public class graphTheoryPanel extends JPanel {
     public void PrimMST() {
         int startV = (int) (Math.random() * vCount); // random start vertex
         int iterations = 0, fCount = 0, action, MSTvCount = 0, nonMSTvCount = 0;
-        graphTheoryVertex currentV = vertices[startV], v, a, b;
-        graphTheoryEdge bestEdge = null, e; // least weight edge of fringe
+        Prim_Vertex currentV = vertices[startV], v, a, b;
+        Prim_Edge bestEdge = null, e; // least weight edge of fringe
         
         // arrays keep track of the tree's vertices, edges, and fringe edges.
-        // the only constant array is MSTedges
-        graphTheoryVertex[] MSTv = new graphTheoryVertex[1000];
-        graphTheoryVertex[] nonMSTv = new graphTheoryVertex[1000];
-        graphTheoryEdge[] MSTe = new graphTheoryEdge[vCount - 1];
-        graphTheoryEdge[] fringe = new graphTheoryEdge[1000];
+        // The only constant array is MSTedges.
+        Prim_Vertex[] MSTv = new Prim_Vertex[1000];
+        Prim_Vertex[] nonMSTv = new Prim_Vertex[1000];
+        Prim_Edge[] MSTe = new Prim_Edge[vCount - 1];
+        Prim_Edge[] fringe = new Prim_Edge[1000];
         
         // While loop is based on the property of trees that there is one less
         // edge than there are vertices. T(v, e): |{e}| = |{v}| - 1
@@ -96,11 +99,11 @@ public class graphTheoryPanel extends JPanel {
         action = 1; // allows first iteration to bypass array re-config as
                     // MSTe array is empty on first iteration.
         
-        fringe = new graphTheoryEdge[1000];
+        fringe = new Prim_Edge[1000];
         fCount = 0;
-        MSTv = new graphTheoryVertex[1000];
+        MSTv = new Prim_Vertex[1000];
         MSTvCount = 0;
-        nonMSTv = new graphTheoryVertex[1000];
+        nonMSTv = new Prim_Vertex[1000];
         nonMSTvCount = 0;
         
         if (iterations == 0) {
@@ -114,6 +117,8 @@ public class graphTheoryPanel extends JPanel {
             }
         }
         
+        // On any iteration besides the first, each array is re-configured based
+        // on the contents of the MSTe array.
         switch (action) {
             case 1:
                 
@@ -183,10 +188,8 @@ public class graphTheoryPanel extends JPanel {
                 break;
         }
         
-        System.out.println("On iteration " + iterations + " we got to MSTvCount " + MSTvCount);
-        System.out.println("On iteration " + iterations + " we got to nonMSTvCount " + nonMSTvCount);
-        System.out.println("On iteration " + iterations + " we got to fCount " + fCount);
-        
+        // picks an arbitrary element of fringe array and compares it to all the
+        // others to find the edge of least weight.
         bestEdge = fringe[0];
         for (int count=0; count < fCount; count++) {
             if (bestEdge.getWeight() > fringe[count].getWeight())
@@ -197,6 +200,8 @@ public class graphTheoryPanel extends JPanel {
         iterations++;
         }
         
+        // upon completion of the while loop, the edge array is replaced with
+        // the edges of the tree, and their graphics are altered.
         edges = MSTe;
         eCount = vCount - 1;
         for (int count = 0; count < eCount; count++)
@@ -280,7 +285,7 @@ public class graphTheoryPanel extends JPanel {
                 
                 case 1: 
                     if ((selectionEmpty) && (!edgeSelected)) {
-                        graphTheoryVertex v = new graphTheoryVertex(pressPoint.x, pressPoint.y);
+                        Prim_Vertex v = new Prim_Vertex(pressPoint.x, pressPoint.y);
                         vertices[vCount] = v;
                         vCount++;
                         next = 1;
@@ -332,8 +337,8 @@ public class graphTheoryPanel extends JPanel {
                             !(vertices[count].isSelected())) {
                         for (int index=0; index < vCount; index++) {
                             if (vertices[index].isSelected()) {
-                                graphTheoryEdge e = new 
-                                graphTheoryEdge(vertices[index], vertices[count]);
+                                Prim_Edge e = new 
+                                Prim_Edge(vertices[index], vertices[count]);
                                 edges[eCount] = e;
                                 eCount++;
                                 vertices[index].selected();
@@ -371,7 +376,7 @@ public class graphTheoryPanel extends JPanel {
                 repaint();
                 return;
             }
-            
+
             if (event.getSource() == prim) {
                 PrimMST();
                 repaint();
@@ -379,7 +384,7 @@ public class graphTheoryPanel extends JPanel {
             }
             
             for (int count=0; count < eCount; count++)
-                    edges = new graphTheoryEdge[100];
+                    edges = new Prim_Edge[100];
                 eCount = 0;
             if (event.getSource() == clear) {
                 for (int count=0; count < vCount; count++) 

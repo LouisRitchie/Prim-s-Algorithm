@@ -1,24 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Prim_IntroPanel.java
+ * Louis Ritchie        louiscritchie@gmail.com         January 11th, 2015
+ * 
+ * This class gives a brief introduction to the application including
+ * instructions, a overview of trees, and the uses of Prim's algorithm.
  */
 package graphtheorydriver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-/**
- *
- * @author louis_c_ritchie
- */
-public class IntroPanel extends JPanel {
+
+public class Prim_IntroPanel extends JPanel {
     
     private JLabel readme, text1, text2, text3, text4, text5;
     //--------------------------------------------------------------------------
     // Constructor: Sets up the panel.
     //--------------------------------------------------------------------------
-    public IntroPanel() {
+    public Prim_IntroPanel() {
         
         setLayout(new FlowLayout(FlowLayout.LEFT));
         readme = new JLabel("<html><b><u>INSTRUCTIONS:</b></u> <br><br>1. Using your mouse, click on "
