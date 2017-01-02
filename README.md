@@ -17,4 +17,6 @@ edges to the tree as long as they do not form a cycle. Dijsktra's algorithm assi
 number that is infinty for all vertices outside the "fringe" (vertices one edge away from the current tree) and is a real number
 for vertices in the fringe.
 
+![Using the MST finder](MST_animation)
+
 - Louis
