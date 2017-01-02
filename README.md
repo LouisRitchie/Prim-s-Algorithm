@@ -3,7 +3,7 @@
 
 ## Java application with user interface that demonstrates the action of Prim's Algorithm for Minimum Spanning Trees.
 
-![Using the MST finder](MST_animation)
+![Using the MST finder](MST.gif)
 
 ## Running this code on Linux / OSX
 - Be able to run `java` and `javac` and have run java code before
