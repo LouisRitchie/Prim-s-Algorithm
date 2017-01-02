@@ -1,7 +1,5 @@
-# Prim-s-Algorithm
-Louis Ritchie
-louiscritchie@gmail.com
-Published January 11th, 2015
+# Minimum Spanning Tree Finder
+## Implements Prims Algorithm in Java
 
 ## Java application with user interface that demonstrates the action of Prim's Algorithm for Minimum Spanning Trees.
 
@@ -15,6 +13,15 @@ Published January 11th, 2015
 ## Running on Windows
 - You'll be running similar commands to those I listed above, but I've never run this on Windws.
 
+## About this project
+- Simple OO programming project totalling 500 LOC
+- I was 20 when I made this
+- The work took 20 hours total
+- Wanted to get a software co-op but I had nothing to show for programming experience
+- Referenced the appendices of a Java textbook that detailed a graphics library's API
+- Didn't get the job.
+
+## About Minimum Spanning Trees
 Trees are an incredibly important area of study in the field of Graph Theory. These mathematical objects are cycle free, connected
 graphs that are used to enhance search efficiency, route planning, or network pathing. Prim's algorithm was developed in the 20th
 century and finds a Minimum Spanning Tree in any connected, simple, weighted graph. A Minimum Spanning Tree is characterized by
