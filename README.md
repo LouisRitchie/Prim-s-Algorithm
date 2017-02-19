@@ -6,7 +6,7 @@
 ![Using the MST finder](MST.gif)
 
 ## Running this code on Linux / OSX
-- Have a java runtime environment installed
+- Have java installed
 - In `/src/graphtheorydriver`, run `javac *` to compile bytecode
 - In `/src` directory, `java graphtheorydriver.Prim_MainFrame` to open the application window
 
